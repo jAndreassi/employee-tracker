@@ -5,20 +5,10 @@ const viewAllEmployees = (db) =>
     console.table(results);
   });
 
-// db.connect((err) => {
-//   if (err) throw err;
-//   console.log(`Connected`);
-// });
-
 const viewAllRoles = (db) =>
   db.query(`SELECT * FROM roles`, function (err, results, fields) {
     console.table(results);
   });
-
-// db.connect((err) => {
-//   if (err) throw err;
-//   console.log(`Connected`);
-// });
 
 const viewAllDepartments = (db) =>
   db.query(`SELECT * FROM department`, function (err, results, fields) {
@@ -35,8 +25,7 @@ const addDepartment = (db) => {
       },
     ])
     .then((answers) => {
-      console.log(answer.input);
-      // db.query(`INSERT INTO department(name), VALUES(${answers.input})`);
+      db.query(`INSERT INTO department(name), VALUES(${answers.input})`);
     });
 };
 
@@ -45,13 +34,14 @@ const addEmployee = (db) => {
     .prompt([
       {
         type: "input",
-        message: "Please enter the department you would like to add?",
+        message: "Please enter the name of the employee you would like to add?",
         name: "input",
       },
     ])
     .then((answers) => {
-      console.log(answer.input);
-      // db.query(`INSERT INTO department(name), VALUES(${answers.input})`);
+      db.query(
+        `INSERT INTO employee(first_name, last_name), VALUES(${answers.input})`
+      );
     });
 };
 
@@ -60,13 +50,14 @@ const addRole = (db) => {
     .prompt([
       {
         type: "input",
-        message: "Please enter the department you would like to add?",
+        message: "Please enter the role you would like to add?",
         name: "input",
       },
     ])
     .then((answers) => {
-      console.log(answer.input);
-      // db.query(`INSERT INTO department(name), VALUES(${answers.input})`);
+      db.query(
+        `INSERT INTO roles(title, salary, department_1), VALUES(${answers.input})`
+      );
     });
 };
 
@@ -74,8 +65,8 @@ const updateEmployeeRole = (db) => {
   inquirer
     .prompt([
       {
-        type: "input",
-        message: "Please enter the department you would like to add?",
+        type: "list",
+        message: "Which employee would you like to update?",
         name: "input",
       },
     ])

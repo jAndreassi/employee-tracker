@@ -12,16 +12,13 @@ const {
   addEmployee,
 } = require("./viewemployees.js");
 
-const db = mysql.createConnection(
-  {
-    user: "root",
-    password: "Monty1020!",
-    database: "columbia_db",
-    host: "localhost",
-  }
-  // console.log(database)
-);
-// const promptUser = () => {
+const db = mysql.createConnection({
+  user: "root",
+  password: "Monty1020!",
+  database: "columbia_db",
+  host: "localhost",
+});
+
 inquirer
   .prompt([
     {
@@ -70,26 +67,6 @@ inquirer
       connection.end();
     }
   });
-// };
-
-// if (choices === "View All Employees By Department") {
-//   viewEmployeesByDepartment();
-// }
-// if (choices === "Remove Employee") {
-//   removeEmployee();
-// }
-// if (choices === "Update Employee Manager") {
-//   updateEmployeeManager();
-// }
-// if (choices === "Remove Role") {
-//   removeRole();
-// }
-// if (choices === "View Department Budgets") {
-//   viewDepartmentBudget();
-// }
-// if (choices === "Remove Department") {
-//   removeDepartment();
-// }
 
 // const express = require("express");
 // const mysql = require("mysql2");
