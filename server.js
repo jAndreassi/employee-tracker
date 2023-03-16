@@ -2,6 +2,7 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
+require("dotenv").config();
 const {
   viewAllEmployees,
   viewAllRoles,
@@ -13,9 +14,9 @@ const {
 } = require("./viewemployees.js");
 
 const db = mysql.createConnection({
-  user: "root",
-  password: "Monty1020!",
-  database: "columbia_db",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   host: "localhost",
 });
 
